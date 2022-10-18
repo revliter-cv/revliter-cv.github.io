@@ -17,9 +17,8 @@ Implementation Details  TODO
 Implementation Details  TODO
  ">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://revliter-cv.github.io/articles/audio-visual/2107.00135/"><meta property="og:image" content="https://revliter-cv.github.io/digital-garden-logo.png"><meta property="article:section" content="articles">
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta property="og:url" content="https://revliter-cv.github.io/articles/audio-visual/2107.00135/"><meta property="article:section" content="articles">
+<meta name=twitter:card content="summary">
 <meta name=twitter:title content="(NeurIPS 2021) Attention Bottleneck for Multimodal Fusion">
 <meta name=twitter:description content="Conclusion 关于特征融合，一般的处理方式是做fusion，在之前读视频理解相关的论文也提到，对于时空两个方向提取出的特征做fusion，包括有late fusion， early fusion，以及模型内部很多次的mid fusion，对于两个模态的特征融合一般主导方法是late fusion（主要是基于模型复杂度和精度的综合考虑），而google research发表了关于attention bottleneck的方法来改进时间复杂度，并且在精度上也很不错。相当于把(m+n)^2 的复杂度变成了(m+x)^2 + (n+x)^2，从而把两个模态特征大小的乘积项搞掉了。假设m=n的话其实就是近乎提高了一倍的效率。
 关于fsn的部分和学长@YJG聊了一些，我个人觉得fsn不像cls一样直接出现在loss里面能够得到一个很强的监督信号来强制让他去整合单个模态的整体特征，而学长认为loss的传递会训练到fsn的部分，由此会产生监督效果, 并觉得现在网络的训练能力足够强大，不用担心这一块学习不到特征，而且实验结果确实能够证实这一点，整个模型确实表现的比单个模态的模型要好。这个说法我也感觉没什么大问题，但是还是感觉有一点奇怪，并固执地觉得或许只是在某一个实验的结果很好，只是故事讲的很好但是模型的效果不够solid，所以需要再做一些实验来证实这样的想法到底是不是一个很好的trick，（文章具体实验的部分也没有太仔细看，回头带着这样的想法再确认一下好了）。然后在晚上洗完澡后发呆的时候有了一些奇怪的想法，觉得fsn token其实和cls token一样，那我们其实是不是可以直接把fsn扔掉，然后给每个模态多加几个cls token，这样cls token都可以得到分类loss的强监督，再在模型中间用几个cls token之间做fusion或者说self-attention，最后得到多个cls token后加pooling和mlp就可以了。然后在和学长讨论了一下后感觉其实这个和fsn没有很大的区别，最后pooling加mlp的方式也是现在很多改进ViT的方法用的trick，不过倒是提供了一种可以小改fsn或者说解释fsn的方法。
@@ -30,14 +29,14 @@ Implementation Details  TODO
 关于fsn的部分和学长@YJG聊了一些，我个人觉得fsn不像cls一样直接出现在loss里面能够得到一个很强的监督信号来强制让他去整合单个模态的整体特征，而学长认为loss的传递会训练到fsn的部分，由此会产生监督效果, 并觉得现在网络的训练能力足够强大，不用担心这一块学习不到特征，而且实验结果确实能够证实这一点，整个模型确实表现的比单个模态的模型要好。这个说法我也感觉没什么大问题，但是还是感觉有一点奇怪，并固执地觉得或许只是在某一个实验的结果很好，只是故事讲的很好但是模型的效果不够solid，所以需要再做一些实验来证实这样的想法到底是不是一个很好的trick，（文章具体实验的部分也没有太仔细看，回头带着这样的想法再确认一下好了）。然后在晚上洗完澡后发呆的时候有了一些奇怪的想法，觉得fsn token其实和cls token一样，那我们其实是不是可以直接把fsn扔掉，然后给每个模态多加几个cls token，这样cls token都可以得到分类loss的强监督，再在模型中间用几个cls token之间做fusion或者说self-attention，最后得到多个cls token后加pooling和mlp就可以了。然后在和学长讨论了一下后感觉其实这个和fsn没有很大的区别，最后pooling加mlp的方式也是现在很多改进ViT的方法用的trick，不过倒是提供了一种可以小改fsn或者说解释fsn的方法。
 Implementation Details  TODO
  ">
-<meta itemprop=wordCount content="23"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta itemprop=wordCount content="23">
 <meta itemprop=keywords content>
 <meta itemprop=name content="(NeurIPS 2021) Attention Bottleneck for Multimodal Fusion">
 <meta itemprop=description content="Conclusion 关于特征融合，一般的处理方式是做fusion，在之前读视频理解相关的论文也提到，对于时空两个方向提取出的特征做fusion，包括有late fusion， early fusion，以及模型内部很多次的mid fusion，对于两个模态的特征融合一般主导方法是late fusion（主要是基于模型复杂度和精度的综合考虑），而google research发表了关于attention bottleneck的方法来改进时间复杂度，并且在精度上也很不错。相当于把(m+n)^2 的复杂度变成了(m+x)^2 + (n+x)^2，从而把两个模态特征大小的乘积项搞掉了。假设m=n的话其实就是近乎提高了一倍的效率。
 关于fsn的部分和学长@YJG聊了一些，我个人觉得fsn不像cls一样直接出现在loss里面能够得到一个很强的监督信号来强制让他去整合单个模态的整体特征，而学长认为loss的传递会训练到fsn的部分，由此会产生监督效果, 并觉得现在网络的训练能力足够强大，不用担心这一块学习不到特征，而且实验结果确实能够证实这一点，整个模型确实表现的比单个模态的模型要好。这个说法我也感觉没什么大问题，但是还是感觉有一点奇怪，并固执地觉得或许只是在某一个实验的结果很好，只是故事讲的很好但是模型的效果不够solid，所以需要再做一些实验来证实这样的想法到底是不是一个很好的trick，（文章具体实验的部分也没有太仔细看，回头带着这样的想法再确认一下好了）。然后在晚上洗完澡后发呆的时候有了一些奇怪的想法，觉得fsn token其实和cls token一样，那我们其实是不是可以直接把fsn扔掉，然后给每个模态多加几个cls token，这样cls token都可以得到分类loss的强监督，再在模型中间用几个cls token之间做fusion或者说self-attention，最后得到多个cls token后加pooling和mlp就可以了。然后在和学长讨论了一下后感觉其实这个和fsn没有很大的区别，最后pooling加mlp的方式也是现在很多改进ViT的方法用的trick，不过倒是提供了一种可以小改fsn或者说解释fsn的方法。
 Implementation Details  TODO
  ">
-<meta itemprop=wordCount content="23"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta itemprop=wordCount content="23">
 <meta itemprop=keywords content>
 </head><body class="flex relative h-full min-h-screen"><aside class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:w-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar">
 <p class="font-bold mb-5 flex items-center gap-2">
@@ -86,16 +85,6 @@ Implementation Details  TODO
 </li>
 </ul>
 <div class=flex-1></div>
-<div class=revue-widget>
-<form action=https://www.getrevue.co/profile/username/add_subscriber method=post name=revue-form target=_blank>
-<div class="text-bold text-sm">Subscribe to my newsletter</div>
-<p class="text-xs my-1 text-slate-500">A curated weekly digest once a week to your mailbox</p>
-<div class=mt-2>
-<input type=email class="w-full px-1.5 py-0.5 text-sm rounded border dark:border-slate-700 dark:bg-slate-600" name=member[email] id=member_email placeholder="Your email address...">
-<input type=submit class="mt-2 w-full text-center text-sm bg-slate-800 text-white dark:bg-slate-50 dark:text-slate-800 py-1 rounded" name=member[subscribe] id=member_submit value=Subscribe>
-</div>
-</form>
-</div>
 <ul class="list-none flex flex-wrap justify-center gap-1 pt-2 border-t border-slate-200 dark:border-slate-600">
 <li>
 <a class="px-2 py-1.5 rounded-md text-sm block text-slate-800 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-700" href=https://twitter.com target=_blank rel="noopener noreferrer">
