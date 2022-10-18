@@ -19,8 +19,9 @@ Conclusion: 这篇论文算是KD领域的开山之作（？），作者是大名
 关于这个方法的缺点呢，
  Although the KD training achieved improved accuracy over several datasets, this method has limitations such as difficulty with optimizing very deep networks. Its effectiveness only limits to softmax loss function, and relies on the number of classes. For example, in a binary classifi- cation problem, KD could hardly improve the performance since almost no additional supervision could be provided.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://revliter-cv.github.io/articles/knowledge-distillation/1503.02531/"><meta property="article:section" content="articles">
-<meta name=twitter:card content="summary">
+<meta property="og:url" content="https://revliter-cv.github.io/articles/knowledge-distillation/1503.02531/"><meta property="og:image" content="https://revliter-cv.github.io/digital-garden-logo.png"><meta property="article:section" content="articles">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://revliter-cv.github.io/digital-garden-logo.png">
 <meta name=twitter:title content="(NeurIPS 2014) Distilling the Knowledge in a Neural Network">
 <meta name=twitter:description content="arXiv: 1503.02531
 Conclusion: 这篇论文算是KD领域的开山之作（？），作者是大名鼎鼎的Hinton老爷子，解决的主要问题是：目前的模型ensemble很有用，能显著提点，但是这会导致计算量太大而难以得到实际的应用，于是希望能把模型ensemble综合成一个模型，这样也能减小模型本身的variance，增加泛化能力。
@@ -33,7 +34,7 @@ Conclusion: 这篇论文算是KD领域的开山之作（？），作者是大名
 然后关于蒸馏，基本上就是拿模型ensemble出来的结果作为监督目标训练子网络，而传统的通过softmax得到的结果可能因为太过‘hard’而导致学习效果不好，所以提出了一种带温度的softed-softmax，Using a higher value for T produces a softer probability distribution over classes. 然后如果用来训练的样本有标注，可以把标注的信息也作为一个监督信号。
 关于这个方法的缺点呢，
  Although the KD training achieved improved accuracy over several datasets, this method has limitations such as difficulty with optimizing very deep networks. Its effectiveness only limits to softmax loss function, and relies on the number of classes. For example, in a binary classifi- cation problem, KD could hardly improve the performance since almost no additional supervision could be provided.">
-<meta itemprop=wordCount content="82">
+<meta itemprop=wordCount content="82"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
 <meta itemprop=keywords content>
 <meta itemprop=name content="(NeurIPS 2014) Distilling the Knowledge in a Neural Network">
 <meta itemprop=description content="arXiv: 1503.02531
@@ -41,7 +42,7 @@ Conclusion: 这篇论文算是KD领域的开山之作（？），作者是大名
 然后关于蒸馏，基本上就是拿模型ensemble出来的结果作为监督目标训练子网络，而传统的通过softmax得到的结果可能因为太过‘hard’而导致学习效果不好，所以提出了一种带温度的softed-softmax，Using a higher value for T produces a softer probability distribution over classes. 然后如果用来训练的样本有标注，可以把标注的信息也作为一个监督信号。
 关于这个方法的缺点呢，
  Although the KD training achieved improved accuracy over several datasets, this method has limitations such as difficulty with optimizing very deep networks. Its effectiveness only limits to softmax loss function, and relies on the number of classes. For example, in a binary classifi- cation problem, KD could hardly improve the performance since almost no additional supervision could be provided.">
-<meta itemprop=wordCount content="82">
+<meta itemprop=wordCount content="82"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
 <meta itemprop=keywords content>
 </head><body class="flex relative h-full min-h-screen"><aside class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:w-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar">
 <p class="font-bold mb-5 flex items-center gap-2">
