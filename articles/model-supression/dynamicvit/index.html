@@ -4,25 +4,45 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <link rel=icon href=/favicon.ico>
 <title>
-(Tdd) Action Recognition with Trajectory-Pooled Deep-Convolutional Descriptors - Computer Vision Paper Reading
+DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification - Computer Vision Paper Reading
 </title>
-<meta name=description content><meta name=generator content="Hugo 0.92.2">
+<meta name=description content="First update: 2022.10.19
+ I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.
+The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.
+ HOW can we come to this conclusion?  Visualization:
+About this visualization method: Paper related: Tranformer interpretability beyond attention visualization"><meta name=generator content="Hugo 0.92.2">
 <link rel=stylesheet href=https://revliter-cv.github.io/css/main.css>
-<meta property="og:title" content="(Tdd) Action Recognition with Trajectory-Pooled Deep-Convolutional Descriptors">
-<meta property="og:description" content>
+<meta property="og:title" content="DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
+<meta property="og:description" content="First update: 2022.10.19
+ I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.
+The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.
+ HOW can we come to this conclusion?  Visualization:
+About this visualization method: Paper related: Tranformer interpretability beyond attention visualization">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://revliter-cv.github.io/articles/video-understanding/tdd/"><meta property="og:image" content="https://revliter-cv.github.io/digital-garden-logo.png"><meta property="article:section" content="articles">
+<meta property="og:url" content="https://revliter-cv.github.io/articles/model-supression/dynamicvit/"><meta property="og:image" content="https://revliter-cv.github.io/digital-garden-logo.png"><meta property="article:section" content="articles">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://revliter-cv.github.io/digital-garden-logo.png">
-<meta name=twitter:title content="(Tdd) Action Recognition with Trajectory-Pooled Deep-Convolutional Descriptors">
-<meta name=twitter:description content>
-<meta itemprop=name content="(Tdd) Action Recognition with Trajectory-Pooled Deep-Convolutional Descriptors">
-<meta itemprop=description content>
-<meta itemprop=wordCount content="0"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta name=twitter:title content="DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
+<meta name=twitter:description content="First update: 2022.10.19
+ I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.
+The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.
+ HOW can we come to this conclusion?  Visualization:
+About this visualization method: Paper related: Tranformer interpretability beyond attention visualization">
+<meta itemprop=name content="DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
+<meta itemprop=description content="First update: 2022.10.19
+ I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.
+The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.
+ HOW can we come to this conclusion?  Visualization:
+About this visualization method: Paper related: Tranformer interpretability beyond attention visualization">
+<meta itemprop=wordCount content="535"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
 <meta itemprop=keywords content>
-<meta itemprop=name content="(Tdd) Action Recognition with Trajectory-Pooled Deep-Convolutional Descriptors">
-<meta itemprop=description content>
-<meta itemprop=wordCount content="0"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta itemprop=name content="DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
+<meta itemprop=description content="First update: 2022.10.19
+ I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.
+The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.
+ HOW can we come to this conclusion?  Visualization:
+About this visualization method: Paper related: Tranformer interpretability beyond attention visualization">
+<meta itemprop=wordCount content="535"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
 <meta itemprop=keywords content>
 </head><body class="flex relative h-full min-h-screen"><aside class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:w-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar">
 <p class="font-bold mb-5 flex items-center gap-2">
@@ -136,7 +156,95 @@
 <style>code.has-jax{font:inherit;font-size:100%;background:inherit;border:inherit;color:#515151}</style>
 <div class="overflow-y-auto h-screen max-w-full">
 <article class="left-3 px-6 py-20 max-w-full mx-10 prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
-<h1 class=!mb-2>(Tdd) Action Recognition with Trajectory-Pooled Deep-Convolutional Descriptors</h1>
+<h1 class=!mb-2>DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification</h1>
+<blockquote>
+<p>First update: 2022.10.19</p>
+</blockquote>
+<p>I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.</p>
+<p>The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.</p>
+<ul>
+<li>HOW can we come to this conclusion?</li>
+</ul>
+<p>Visualization:</p>
+<p><img src=/images/MS/DynamicVit1.png alt="Attention Visualization"></p>
+<h4 id=about-this-visualization-method>About this visualization method:</h4>
+<p>Paper related: <a href=https://arxiv.org/pdf/2012.09838 target=_blank rel=noopener>Tranformer interpretability beyond attention visualization</a></p>
+<p>Quick Summarization:</p>
+<blockquote>
+<p>In order to visualize the parts of the image that led to a certain classification, existing methods either rely on the obtained attention maps or employ heuristic propagation along the attention graph.</p>
+</blockquote>
+<blockquote>
+<p>The method assigns local relevance based on the Deep Taylor Decomposition principle and then propagates these relevancy scores through the layers. (A new way to propagate the relevance to better fit the charateristics of the structure of the network)</p>
+</blockquote>
+<p>And we can also prove this conclusion with the final result.</p>
+<h4 id=architecture>Architecture</h4>
+<p>$\hat{D}$ Is the mask vector.</p>
+<p>$$
+\hat{D} \in \lbrace 0, 1 \rbrace^N, x \in R^{N \times C}
+$$</p>
+<p>$$
+z^{local} = MLP(x) \in R^{N \times C^{'}}
+$$</p>
+<p>$$
+z^{global} = Agg(MLP(x), \hat{D}) \in R^{C^{'}}
+$$</p>
+<p>Where Agg is an aggregation function like average pooling.</p>
+<p>Then this model aggregate Zlocal and Zglobal to get Z and then project it(using MLP) to N $\times$ 2 and then use softmax to get a probability matrix to sample the final D.</p>
+<p>And it uses the Hadamard product to update $\hat{D}$.</p>
+<blockquote>
+<p>The Hadamard product can ensure that a token, once dropped, will never be used later.</p>
+</blockquote>
+<h3 id=dive-deeper>Dive deeper:</h3>
+<ul>
+<li>About Zlocal and Zglobal:</li>
+</ul>
+<p>Related code</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#ff79c6>class</span> <span style=color:#50fa7b>PredictorLG</span>(nn<span style=color:#ff79c6>.</span>Module):
+    <span style=color:#f1fa8c>&#34;&#34;&#34; Image to Patch Embedding
+</span><span style=color:#f1fa8c>    &#34;&#34;&#34;</span>
+    <span style=color:#ff79c6>def</span> __init__(self, embed_dim<span style=color:#ff79c6>=</span><span style=color:#bd93f9>384</span>):
+        <span style=color:#8be9fd;font-style:italic>super</span>()<span style=color:#ff79c6>.</span>__init__()
+        self<span style=color:#ff79c6>.</span>in_conv <span style=color:#ff79c6>=</span> nn<span style=color:#ff79c6>.</span>Sequential(
+            nn<span style=color:#ff79c6>.</span>LayerNorm(embed_dim),
+            nn<span style=color:#ff79c6>.</span>Linear(embed_dim, embed_dim),
+            nn<span style=color:#ff79c6>.</span>GELU()
+        )
+
+        self<span style=color:#ff79c6>.</span>out_conv <span style=color:#ff79c6>=</span> nn<span style=color:#ff79c6>.</span>Sequential(
+            nn<span style=color:#ff79c6>.</span>Linear(embed_dim, embed_dim <span style=color:#ff79c6>//</span> <span style=color:#bd93f9>2</span>),
+            nn<span style=color:#ff79c6>.</span>GELU(),
+            nn<span style=color:#ff79c6>.</span>Linear(embed_dim <span style=color:#ff79c6>//</span> <span style=color:#bd93f9>2</span>, embed_dim <span style=color:#ff79c6>//</span> <span style=color:#bd93f9>4</span>),
+            nn<span style=color:#ff79c6>.</span>GELU(),
+            nn<span style=color:#ff79c6>.</span>Linear(embed_dim <span style=color:#ff79c6>//</span> <span style=color:#bd93f9>4</span>, <span style=color:#bd93f9>2</span>),
+            nn<span style=color:#ff79c6>.</span>LogSoftmax(dim<span style=color:#ff79c6>=-</span><span style=color:#bd93f9>1</span>)
+        )
+
+    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>forward</span>(self, x, policy):
+        x <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>in_conv(x)
+        B, N, C <span style=color:#ff79c6>=</span> x<span style=color:#ff79c6>.</span>size()
+        local_x <span style=color:#ff79c6>=</span> x[:,:, :C<span style=color:#ff79c6>//</span><span style=color:#bd93f9>2</span>]
+        global_x <span style=color:#ff79c6>=</span> (x[:,:, C<span style=color:#ff79c6>//</span><span style=color:#bd93f9>2</span>:] <span style=color:#ff79c6>*</span> policy)<span style=color:#ff79c6>.</span>sum(dim<span style=color:#ff79c6>=</span><span style=color:#bd93f9>1</span>, keepdim<span style=color:#ff79c6>=</span><span style=color:#ff79c6>True</span>) <span style=color:#ff79c6>/</span> torch<span style=color:#ff79c6>.</span>sum(policy, dim<span style=color:#ff79c6>=</span><span style=color:#bd93f9>1</span>, keepdim<span style=color:#ff79c6>=</span><span style=color:#ff79c6>True</span>)
+        x <span style=color:#ff79c6>=</span> torch<span style=color:#ff79c6>.</span>cat([local_x, global_x<span style=color:#ff79c6>.</span>expand(B, N, C<span style=color:#ff79c6>//</span><span style=color:#bd93f9>2</span>)], dim<span style=color:#ff79c6>=-</span><span style=color:#bd93f9>1</span>)
+        <span style=color:#ff79c6>return</span> self<span style=color:#ff79c6>.</span>out_conv(x)
+</code></pre></div><p>I have few experience of training networks and I have the following questions:</p>
+<ul>
+<li>Why we need to do layernorm before fc-gelu-layer (Or a more basic question: where should we do layernorm)?</li>
+</ul>
+<p>(Not quite relevant to understanding this paper, will be put in a separate post)</p>
+<ul>
+<li>Why we need to do in_conv operations as the x we get is already the extracted feature ?</li>
+</ul>
+<p>My opinion: Intuitively the mlp can improve the expression ability of the tokens. (Basically the MLP layer can just choose to do nothing with the tokens got)</p>
+<ul>
+<li>Why we need to cut x into localx and globalx and then use policy to get aggregated globalx ?</li>
+</ul>
+<p>My opinion: We need to make the final Z to have information about both the original feature and the masked feature or just the mask. But the cutting strategy is a little bit strange. It can be explained with its reduced computational complexity but it still challenges common sense. So I believe further experimental results are required.</p>
+<ul>
+<li>About training strategy and loss design</li>
+</ul>
+<blockquote>
+<p>Not that important, neglected here. (May be complemented when detailed implementation of this paper is required).</p>
+</blockquote>
 </article>
 </div>
 </div>
