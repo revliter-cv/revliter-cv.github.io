@@ -4,22 +4,36 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <link rel=icon href=/favicon.ico>
 <title>
-Model Supression or Acceleration - Computer Vision Paper Reading
+(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer - Computer Vision Paper Reading
 </title>
-<meta name=description content="Revliter's CV blog"><meta name=generator content="Hugo 0.92.2">
+<meta name=description content="First update: 2022.10.21
+ This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).
+And like DynamicVit, this paper is also focused on token selection."><meta name=generator content="Hugo 0.92.2">
 <link rel=stylesheet href=https://revliter-cv.github.io/css/main.css>
-<meta property="og:title" content="Model Supression or Acceleration">
-<meta property="og:description" content="Revliter's CV blog">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://revliter-cv.github.io/articles/model-supression/"><meta property="og:image" content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta property="og:title" content="(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
+<meta property="og:description" content="First update: 2022.10.21
+ This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).
+And like DynamicVit, this paper is also focused on token selection.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://revliter-cv.github.io/articles/model-supression/a-vit/"><meta property="og:image" content="https://revliter-cv.github.io/digital-garden-logo.png"><meta property="article:section" content="articles">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://revliter-cv.github.io/digital-garden-logo.png">
-<meta name=twitter:title content="Model Supression or Acceleration">
-<meta name=twitter:description content="Revliter's CV blog">
-<meta itemprop=name content="Model Supression or Acceleration">
-<meta itemprop=description content="Revliter's CV blog">
-<meta itemprop=name content="Model Supression or Acceleration">
-<meta itemprop=description content="Revliter's CV blog">
+<meta name=twitter:title content="(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
+<meta name=twitter:description content="First update: 2022.10.21
+ This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).
+And like DynamicVit, this paper is also focused on token selection.">
+<meta itemprop=name content="(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
+<meta itemprop=description content="First update: 2022.10.21
+ This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).
+And like DynamicVit, this paper is also focused on token selection.">
+<meta itemprop=wordCount content="36"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta itemprop=keywords content>
+<meta itemprop=name content="(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
+<meta itemprop=description content="First update: 2022.10.21
+ This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).
+And like DynamicVit, this paper is also focused on token selection.">
+<meta itemprop=wordCount content="36"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta itemprop=keywords content>
 </head><body class="flex relative h-full min-h-screen"><aside class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:w-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar">
 <p class="font-bold mb-5 flex items-center gap-2">
 <button aria-label="Close sidebar" class="md:hidden menu-trigger-close p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-700"><svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
@@ -80,46 +94,17 @@ Model Supression or Acceleration - Computer Vision Paper Reading
 </div>
 <button aria-label="Toggle Sidebar" class="md:hidden absolute top-3 left-3 z-10 menu-trigger p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-100"><svg class="h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="16" y2="18"/></svg></button>
 <div class=flex-1>
-<div class="flex h-screen relative">
-<section class="w-full h-full md:min-w-[350px] md:w-1/4 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col py-3 overflow-y-auto scroll-area">
-<a href=https://revliter-cv.github.io/articles/model-supression/>
-<h2 class="font-bold mb-5 py-1 pl-12 pr-3 md:px-3">Model Supression or Acceleration</h2>
-</a>
-<label class="mb-2 block px-2">
-<span></span>
-<input type=text placeholder="Search articles" class="searchInput bg-white rounded px-2 py-1 w-full border">
-</label>
-<script>const searchElt=document.querySelector('.searchInput');searchElt&&searchElt.addEventListener('input',c=>{const b=c.target.value||'',a=document.querySelectorAll('.article');b?(a.forEach(a=>a.classList.add('hidden')),Array.from(a).filter(c=>{const a=c.querySelector('h3');return!!a&&a.textContent.toLowerCase().includes(b.toLowerCase())}).forEach(a=>a.classList.remove('hidden'))):a.forEach(a=>a.classList.remove('hidden'))})</script>
-<div class=space-y-2.5>
-<a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href=/articles/model-supression/a-vit/>
-<h3 class="text-lg font-semibold mb-0.5">(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer</h3>
-<div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-2112.07658
-</div>
-</a>
-<a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href=/articles/model-supression/adavit/>
-<h3 class="text-lg font-semibold mb-0.5">(CVPR2022) AdaVit:Adaptive Vision Transformers for Efficient Image Recognition</h3>
-<div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-2111.15668
-</div>
-</a>
-<a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href=/articles/model-supression/dynamicvit/>
-<h3 class="text-lg font-semibold mb-0.5">(NIPS2021) DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification</h3>
-<div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-2106.02034
-</div>
-</a>
-<a class="article block px-3 py-4 hover:bg-slate-200 dark:hover:bg-slate-700" href=/articles/model-supression/mobilenet/>
-<h3 class="text-lg font-semibold mb-0.5">MobileNets</h3>
-<div class="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">
-1704.04861
-</div>
-</a>
-</div>
-</section>
-<main class="hidden md:grid h-screen place-items-center flex-1">
-<p class="text-center p-8 text-2xl text-slate-300 dark:text-slate-700">Select a post to read</p>
-</main>
+<script type=text/javascript async src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({tex2jax:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['[[',']]']],processEscapes:!0,processEnvironments:!0,skipTags:['script','noscript','style','textarea','pre'],TeX:{equationNumbers:{autoNumber:"AMS"},extensions:["AMSmath.js","AMSsymbols.js"]}}}),MathJax.Hub.Queue(function(){var b=MathJax.Hub.getAllJax(),a;for(a=0;a<b.length;a+=1)b[a].SourceElement().parentNode.className+=' has-jax'})</script>
+<style>code.has-jax{font:inherit;font-size:100%;background:inherit;border:inherit;color:#515151}</style>
+<div class="overflow-y-auto h-screen max-w-full">
+<article class="left-3 px-6 py-20 max-w-full mx-10 prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
+<h1 class=!mb-2>(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer</h1>
+<blockquote>
+<p>First update: 2022.10.21</p>
+</blockquote>
+<p>This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).</p>
+<p>And like DynamicVit, this paper is also focused on token selection.</p>
+</article>
 </div>
 </div>
 <script type=text/javascript src=/main.js defer></script>

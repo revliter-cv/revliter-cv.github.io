@@ -1,0 +1,191 @@
+<!doctype html><html lang=en itemscope itemtype=http://schema.org/WebPage>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<link rel=icon href=/favicon.ico>
+<title>
+(CVPR2022) AdaVit:Adaptive Vision Transformers for Efficient Image Recognition - Computer Vision Paper Reading
+</title>
+<meta name=description content="First update: 2022.10.19
+   Insight: we argue that due to the large variations among images, their need for modeling long-range dependencies between patches differ.
+  About adavit: an adaptive computation framework that learns to derive usage policies on which patches, self-attention heads and transformer blocks to use throughout the backbone on a per-input basis, aiming to improve inference efficiency of vision transformers with a minimal drop of accuracy for image recognition."><meta name=generator content="Hugo 0.92.2">
+<link rel=stylesheet href=https://revliter-cv.github.io/css/main.css>
+<meta property="og:title" content="(CVPR2022) AdaVit:Adaptive Vision Transformers for Efficient Image Recognition">
+<meta property="og:description" content="First update: 2022.10.19
+   Insight: we argue that due to the large variations among images, their need for modeling long-range dependencies between patches differ.
+  About adavit: an adaptive computation framework that learns to derive usage policies on which patches, self-attention heads and transformer blocks to use throughout the backbone on a per-input basis, aiming to improve inference efficiency of vision transformers with a minimal drop of accuracy for image recognition.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://revliter-cv.github.io/articles/model-supression/adavit/"><meta property="og:image" content="https://revliter-cv.github.io/digital-garden-logo.png"><meta property="article:section" content="articles">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta name=twitter:title content="(CVPR2022) AdaVit:Adaptive Vision Transformers for Efficient Image Recognition">
+<meta name=twitter:description content="First update: 2022.10.19
+   Insight: we argue that due to the large variations among images, their need for modeling long-range dependencies between patches differ.
+  About adavit: an adaptive computation framework that learns to derive usage policies on which patches, self-attention heads and transformer blocks to use throughout the backbone on a per-input basis, aiming to improve inference efficiency of vision transformers with a minimal drop of accuracy for image recognition.">
+<meta itemprop=name content="(CVPR2022) AdaVit:Adaptive Vision Transformers for Efficient Image Recognition">
+<meta itemprop=description content="First update: 2022.10.19
+   Insight: we argue that due to the large variations among images, their need for modeling long-range dependencies between patches differ.
+  About adavit: an adaptive computation framework that learns to derive usage policies on which patches, self-attention heads and transformer blocks to use throughout the backbone on a per-input basis, aiming to improve inference efficiency of vision transformers with a minimal drop of accuracy for image recognition.">
+<meta itemprop=wordCount content="437"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta itemprop=keywords content>
+<meta itemprop=name content="(CVPR2022) AdaVit:Adaptive Vision Transformers for Efficient Image Recognition">
+<meta itemprop=description content="First update: 2022.10.19
+   Insight: we argue that due to the large variations among images, their need for modeling long-range dependencies between patches differ.
+  About adavit: an adaptive computation framework that learns to derive usage policies on which patches, self-attention heads and transformer blocks to use throughout the backbone on a per-input basis, aiming to improve inference efficiency of vision transformers with a minimal drop of accuracy for image recognition.">
+<meta itemprop=wordCount content="437"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+<meta itemprop=keywords content>
+</head><body class="flex relative h-full min-h-screen"><aside class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:w-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar">
+<p class="font-bold mb-5 flex items-center gap-2">
+<button aria-label="Close sidebar" class="md:hidden menu-trigger-close p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-700"><svg class="h-6 w-6" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+<a href=https://revliter-cv.github.io/ class=px-2>
+<span>Computer Vision Paper Reading</span>
+</a>
+<button aria-label="Toggle dark mode" class="dark-mode-toggle p-2 rounded border dark:border-slate-700 hover:bg-slate-200 dark:hover:bg-slate-700"><svg class="h-4 w-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="4"/><path d="M3 12h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7M6.3 17.7l-.7.7"/></svg></button>
+</p>
+<ul class="list-none flex flex-col gap-1">
+<li>
+<a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700" href=/>
+<span>Home</span>
+</a>
+</li>
+<li>
+<a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none" href=#>
+<span>Content</span>
+</a>
+</li>
+<li>
+<a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700" href=/articles>
+<span>Articles</span>
+</a>
+</li>
+<li>
+<a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700" href=/works>
+<span>Works done</span>
+</a>
+</li>
+<li>
+<a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between hover:bg-slate-200 dark:hover:bg-slate-700" href=/framework>
+<span>Frameworks</span>
+</a>
+</li>
+<li>
+<a class="px-2 py-1.5 rounded-md text-sm flex items-center justify-between text-slate-400 font-semibold pb-0 pl-1 border-b cursor-default pointer-events-none" href=#>
+<span>Links</span>
+</a>
+</li>
+</ul>
+<div class=flex-1></div>
+<ul class="list-none flex flex-wrap justify-center gap-1 pt-2 border-t border-slate-200 dark:border-slate-600">
+<li>
+<a class="px-2 py-1.5 rounded-md text-sm block text-slate-800 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-700" href=https://github.com/revliter target=_blank rel="noopener noreferrer">
+<span class=sr-only>GitHub</span>
+<span><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></span>
+</a>
+</li>
+<li>
+<a class="px-2 py-1.5 rounded-md text-sm block text-slate-800 dark:text-slate-50 hover:bg-slate-200 dark:hover:bg-slate-700" href=mailto:201250019@smail.nju.edu.cn target=_blank rel="noopener noreferrer">
+<span class=sr-only>Email</span>
+<span><svg class="h-4 w-4" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3 7 12 13 21 7"/></svg></span>
+</a>
+</li>
+</ul>
+</aside>
+<div class="fixed bg-slate-700 bg-opacity-5 transition duration-200 ease-in-out inset-0 z-10 pointer-events-auto md:hidden left-0 top-0 w-full h-full hidden menu-overlay">
+</div>
+<button aria-label="Toggle Sidebar" class="md:hidden absolute top-3 left-3 z-10 menu-trigger p-1 rounded text-slate-800 dark:text-slate-50 hover:bg-slate-100"><svg class="h-6 w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentcolor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="16" y2="18"/></svg></button>
+<div class=flex-1>
+<script type=text/javascript async src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">MathJax.Hub.Config({tex2jax:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['[[',']]']],processEscapes:!0,processEnvironments:!0,skipTags:['script','noscript','style','textarea','pre'],TeX:{equationNumbers:{autoNumber:"AMS"},extensions:["AMSmath.js","AMSsymbols.js"]}}}),MathJax.Hub.Queue(function(){var b=MathJax.Hub.getAllJax(),a;for(a=0;a<b.length;a+=1)b[a].SourceElement().parentNode.className+=' has-jax'})</script>
+<style>code.has-jax{font:inherit;font-size:100%;background:inherit;border:inherit;color:#515151}</style>
+<div class="overflow-y-auto h-screen max-w-full">
+<article class="left-3 px-6 py-20 max-w-full mx-10 prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
+<h1 class=!mb-2>(CVPR2022) AdaVit:Adaptive Vision Transformers for Efficient Image Recognition</h1>
+<blockquote>
+<p>First update: 2022.10.19</p>
+</blockquote>
+<ul>
+<li>
+<p>Insight: we argue that due to the large variations among images, their need for modeling long-range dependencies between patches differ.</p>
+</li>
+<li>
+<p>About adavit: an adaptive computation framework that learns to derive usage policies on which patches, self-attention heads and transformer blocks to use throughout the backbone on a per-input basis, aiming to improve inference efficiency of vision transformers with a minimal drop of accuracy for image recognition.</p>
+</li>
+</ul>
+<p><strong><a href=https://revliter-cv.github.io/articles/model-supression/dynamicvit/ target=_blank rel=noopener>DynamicVit</a></strong> is proved to be a good token-selecter. So let&rsquo;s compare them together.</p>
+<p>As we can see from the result table:</p>
+<p><img src=/images/MS/AdaVit1.png alt=AdaVit></p>
+<p><img src=/images/MS/DynamicVit2.png alt=DynamicVit></p>
+<p>AdaVit chooses T2T-Vit as its backbone while DynamicVit chooses LV-Vit. The result shows DynamicVit-LV-S/0.5 has already surpassed the result of AdaVit. (AdaVit is published in arXiv in 30, Nov 2021 while DynamicVit is published in 26, Oct 2021.)</p>
+<p>I&rsquo;m curious of the effect of combining them together or just running with the same backbone.</p>
+<p>As the adavit also did token selection, let&rsquo;s dive into its implementation.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#ff79c6>class</span> <span style=color:#50fa7b>SimpleTokenSelect</span>(nn<span style=color:#ff79c6>.</span>Module):
+    <span style=color:#ff79c6>def</span> __init__(self, dim_in, tau<span style=color:#ff79c6>=</span><span style=color:#bd93f9>5</span>, is_hard<span style=color:#ff79c6>=</span><span style=color:#ff79c6>True</span>, threshold<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.5</span>, bias<span style=color:#ff79c6>=</span><span style=color:#ff79c6>True</span>, pre_softmax<span style=color:#ff79c6>=</span><span style=color:#ff79c6>True</span>, 
+            mask_filled_value<span style=color:#ff79c6>=</span><span style=color:#8be9fd;font-style:italic>float</span>(<span style=color:#f1fa8c>&#39;-inf&#39;</span>), ada_token_nonstep<span style=color:#ff79c6>=</span><span style=color:#ff79c6>False</span>, ada_token_detach_attn<span style=color:#ff79c6>=</span><span style=color:#ff79c6>True</span>):
+        <span style=color:#8be9fd;font-style:italic>super</span>()<span style=color:#ff79c6>.</span>__init__()
+        self<span style=color:#ff79c6>.</span>count_flops <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>False</span>
+        self<span style=color:#ff79c6>.</span>ada_token_nonstep <span style=color:#ff79c6>=</span> ada_token_nonstep  
+        <span style=color:#ff79c6>if</span> <span style=color:#ff79c6>not</span> ada_token_nonstep:
+            self<span style=color:#ff79c6>.</span>mlp_head <span style=color:#ff79c6>=</span> nn<span style=color:#ff79c6>.</span>Linear(dim_in, <span style=color:#bd93f9>1</span>, bias<span style=color:#ff79c6>=</span>bias)
+        self<span style=color:#ff79c6>.</span>norm <span style=color:#ff79c6>=</span> nn<span style=color:#ff79c6>.</span>Identity()
+        self<span style=color:#ff79c6>.</span>is_hard <span style=color:#ff79c6>=</span> is_hard
+        self<span style=color:#ff79c6>.</span>tau <span style=color:#ff79c6>=</span> tau
+        self<span style=color:#ff79c6>.</span>threshold <span style=color:#ff79c6>=</span> threshold
+        self<span style=color:#ff79c6>.</span>add_noise <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>True</span>
+        self<span style=color:#ff79c6>.</span>pre_softmax <span style=color:#ff79c6>=</span> pre_softmax
+        self<span style=color:#ff79c6>.</span>mask_filled_value <span style=color:#ff79c6>=</span> mask_filled_value
+        self<span style=color:#ff79c6>.</span>ada_token_detach_attn <span style=color:#ff79c6>=</span> ada_token_detach_attn
+        self<span style=color:#ff79c6>.</span>random_policy <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>False</span>
+        self<span style=color:#ff79c6>.</span>random_token <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>False</span>
+        self<span style=color:#ff79c6>.</span>random_token_ratio <span style=color:#ff79c6>=</span> <span style=color:#bd93f9>1.</span>
+
+    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>set_tau</span>(self, tau):
+        self<span style=color:#ff79c6>.</span>tau <span style=color:#ff79c6>=</span> tau
+
+    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>forward</span>(self, x, attn, attn_pre_softmax, token_select<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>):
+        b, l <span style=color:#ff79c6>=</span> x<span style=color:#ff79c6>.</span>shape[:<span style=color:#bd93f9>2</span>]
+
+        <span style=color:#ff79c6>if</span> <span style=color:#ff79c6>not</span> self<span style=color:#ff79c6>.</span>ada_token_nonstep:
+            <span style=color:#6272a4># generate token policy step by step in each layer, including the first (couple of) blocks</span>
+            logits <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>mlp_head(self<span style=color:#ff79c6>.</span>norm(x[:,<span style=color:#bd93f9>1</span>:]))
+            token_select <span style=color:#ff79c6>=</span> _gumbel_sigmoid(logits, self<span style=color:#ff79c6>.</span>tau, self<span style=color:#ff79c6>.</span>is_hard, threshold<span style=color:#ff79c6>=</span>self<span style=color:#ff79c6>.</span>threshold, training<span style=color:#ff79c6>=</span>self<span style=color:#ff79c6>.</span>training)
+            <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>random_policy <span style=color:#ff79c6>or</span> self<span style=color:#ff79c6>.</span>random_token:
+                token_select <span style=color:#ff79c6>=</span> get_random_policy(token_select, self<span style=color:#ff79c6>.</span>random_token_ratio)
+            token_select <span style=color:#ff79c6>=</span> torch<span style=color:#ff79c6>.</span>cat([token_select<span style=color:#ff79c6>.</span>new_ones(b,<span style=color:#bd93f9>1</span>,<span style=color:#bd93f9>1</span>), token_select], dim<span style=color:#ff79c6>=</span><span style=color:#bd93f9>1</span>)
+            <span style=color:#6272a4># token_select = token_select.unsqueeze(-1) #(b,l,1)</span>
+            token_select <span style=color:#ff79c6>=</span> token_select<span style=color:#ff79c6>.</span>transpose(<span style=color:#bd93f9>1</span>,<span style=color:#bd93f9>2</span>) <span style=color:#6272a4>#(b,1,l)</span>
+        <span style=color:#ff79c6>else</span>:
+            <span style=color:#ff79c6>if</span> token_select <span style=color:#ff79c6>is</span> <span style=color:#ff79c6>None</span>:
+                <span style=color:#6272a4># when token_select is not given in non-step setting, </span>
+                <span style=color:#6272a4># it means this layer is in the first (couple of) trans blocks before head/layer policy generation,</span>
+                <span style=color:#6272a4># and thus we do not drop any token in this/these layers as well for consistency</span>
+                token_select <span style=color:#ff79c6>=</span> torch<span style=color:#ff79c6>.</span>ones((b, <span style=color:#bd93f9>1</span>, l), device<span style=color:#ff79c6>=</span>x<span style=color:#ff79c6>.</span>device)
+            <span style=color:#ff79c6>else</span>:
+                token_select <span style=color:#ff79c6>=</span> token_select[:, <span style=color:#ff79c6>None</span>, :]
+
+        <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>count_flops :
+            <span style=color:#ff79c6>return</span> attn, token_select<span style=color:#ff79c6>.</span>squeeze(<span style=color:#bd93f9>1</span>)
+
+        attn_policy <span style=color:#ff79c6>=</span> torch<span style=color:#ff79c6>.</span>bmm(token_select<span style=color:#ff79c6>.</span>transpose(<span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>,<span style=color:#ff79c6>-</span><span style=color:#bd93f9>2</span>), token_select) <span style=color:#6272a4>#(b,l,l)</span>
+        attn_policy <span style=color:#ff79c6>=</span> attn_policy<span style=color:#ff79c6>.</span>unsqueeze(<span style=color:#bd93f9>1</span>) <span style=color:#6272a4>#(b,1,l,l)</span>
+        <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>ada_token_detach_attn :
+            attn_policy <span style=color:#ff79c6>=</span> attn_policy<span style=color:#ff79c6>.</span>detach()
+
+        <span style=color:#6272a4># use pre_softmax during inference in both pre-softmax or pre-softmax training</span>
+        <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>pre_softmax <span style=color:#ff79c6>or</span> <span style=color:#ff79c6>not</span> self<span style=color:#ff79c6>.</span>training :
+            eye_mat <span style=color:#ff79c6>=</span> attn<span style=color:#ff79c6>.</span>new_zeros((l,l))
+            eye_mat <span style=color:#ff79c6>=</span> eye_mat<span style=color:#ff79c6>.</span>fill_diagonal_(<span style=color:#bd93f9>1</span>) <span style=color:#6272a4>#(1,1,l,l)</span>
+            attn <span style=color:#ff79c6>=</span> attn_pre_softmax <span style=color:#ff79c6>*</span> attn_policy <span style=color:#ff79c6>+</span> 
+              attn_pre_softmax<span style=color:#ff79c6>.</span>new_zeros(attn_pre_softmax<span style=color:#ff79c6>.</span>shape)<span style=color:#ff79c6>.</span>masked_fill_((<span style=color:#bd93f9>1</span> <span style=color:#ff79c6>-</span> attn_policy <span style=color:#ff79c6>-</span> eye_mat)<span style=color:#ff79c6>&gt;</span><span style=color:#bd93f9>0</span>, self<span style=color:#ff79c6>.</span>mask_filled_value)
+            attn <span style=color:#ff79c6>=</span> attn<span style=color:#ff79c6>.</span>softmax(<span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>)
+            <span style=color:#ff79c6>assert</span> <span style=color:#ff79c6>not</span> torch<span style=color:#ff79c6>.</span>isnan(attn)<span style=color:#ff79c6>.</span>any(), <span style=color:#f1fa8c>&#39;token select pre softmax nan !&#39;</span>
+        <span style=color:#ff79c6>else</span> :
+            attn <span style=color:#ff79c6>=</span> nn<span style=color:#ff79c6>.</span>functional<span style=color:#ff79c6>.</span>normalize(attn <span style=color:#ff79c6>*</span> attn_policy, <span style=color:#bd93f9>1</span>, <span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>)
+
+        <span style=color:#ff79c6>return</span> attn, token_select<span style=color:#ff79c6>.</span>squeeze(<span style=color:#bd93f9>1</span>)
+</code></pre></div><p>Obviously the token selection module in DynamicVit seems a better design. (My opinion)</p>
+</article>
+</div>
+</div>
+<script type=text/javascript src=/main.js defer></script>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-PROPERTY_ID','auto'),ga('send','pageview'))</script>
+</body>
+</html>

@@ -4,45 +4,45 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <link rel=icon href=/favicon.ico>
 <title>
-DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification - Computer Vision Paper Reading
+(NIPS2021) DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification - Computer Vision Paper Reading
 </title>
 <meta name=description content="First update: 2022.10.19
  I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.
+This is the first paper I read about ViT&rsquo;s acceleration.
 The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.
- HOW can we come to this conclusion?  Visualization:
-About this visualization method: Paper related: Tranformer interpretability beyond attention visualization"><meta name=generator content="Hugo 0.92.2">
+ HOW can we come to this conclusion?"><meta name=generator content="Hugo 0.92.2">
 <link rel=stylesheet href=https://revliter-cv.github.io/css/main.css>
-<meta property="og:title" content="DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
+<meta property="og:title" content="(NIPS2021) DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
 <meta property="og:description" content="First update: 2022.10.19
  I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.
+This is the first paper I read about ViT&rsquo;s acceleration.
 The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.
- HOW can we come to this conclusion?  Visualization:
-About this visualization method: Paper related: Tranformer interpretability beyond attention visualization">
+ HOW can we come to this conclusion?">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://revliter-cv.github.io/articles/model-supression/dynamicvit/"><meta property="og:image" content="https://revliter-cv.github.io/digital-garden-logo.png"><meta property="article:section" content="articles">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://revliter-cv.github.io/digital-garden-logo.png">
-<meta name=twitter:title content="DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
+<meta name=twitter:title content="(NIPS2021) DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
 <meta name=twitter:description content="First update: 2022.10.19
  I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.
+This is the first paper I read about ViT&rsquo;s acceleration.
 The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.
- HOW can we come to this conclusion?  Visualization:
-About this visualization method: Paper related: Tranformer interpretability beyond attention visualization">
-<meta itemprop=name content="DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
+ HOW can we come to this conclusion?">
+<meta itemprop=name content="(NIPS2021) DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
 <meta itemprop=description content="First update: 2022.10.19
  I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.
+This is the first paper I read about ViT&rsquo;s acceleration.
 The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.
- HOW can we come to this conclusion?  Visualization:
-About this visualization method: Paper related: Tranformer interpretability beyond attention visualization">
-<meta itemprop=wordCount content="538"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+ HOW can we come to this conclusion?">
+<meta itemprop=wordCount content="548"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
 <meta itemprop=keywords content>
-<meta itemprop=name content="DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
+<meta itemprop=name content="(NIPS2021) DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification">
 <meta itemprop=description content="First update: 2022.10.19
  I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.
+This is the first paper I read about ViT&rsquo;s acceleration.
 The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.
- HOW can we come to this conclusion?  Visualization:
-About this visualization method: Paper related: Tranformer interpretability beyond attention visualization">
-<meta itemprop=wordCount content="538"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+ HOW can we come to this conclusion?">
+<meta itemprop=wordCount content="548"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
 <meta itemprop=keywords content>
 </head><body class="flex relative h-full min-h-screen"><aside class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:w-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar">
 <p class="font-bold mb-5 flex items-center gap-2">
@@ -108,11 +108,12 @@ About this visualization method: Paper related: Tranformer interpretability beyo
 <style>code.has-jax{font:inherit;font-size:100%;background:inherit;border:inherit;color:#515151}</style>
 <div class="overflow-y-auto h-screen max-w-full">
 <article class="left-3 px-6 py-20 max-w-full mx-10 prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
-<h1 class=!mb-2>DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification</h1>
+<h1 class=!mb-2>(NIPS2021) DynamicViT:Efficient Vision Transformers with Dynamic Token Sparsification</h1>
 <blockquote>
 <p>First update: 2022.10.19</p>
 </blockquote>
 <p>I just write the blog the same time I read it. So I will make it casual and may rewrite some content later.</p>
+<p>This is the first paper I read about ViT&rsquo;s acceleration.</p>
 <p>The authors proposed in the abstract: we observe the final prediction in vision transformers is only based on a subset of most informative tokens, which is sufficient for accurate image recognition.</p>
 <ul>
 <li>HOW can we come to this conclusion?</li>
