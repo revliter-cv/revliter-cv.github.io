@@ -4,35 +4,45 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <link rel=icon href=/favicon.ico>
 <title>
-(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer - Computer Vision Paper Reading
+(CVPR2022 Oral) A-ViT:Adaptive Tokens for Efficient Vision Transformer - Computer Vision Paper Reading
 </title>
 <meta name=description content="First update: 2022.10.21
  This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).
-And like DynamicVit, this paper is also focused on token selection."><meta name=generator content="Hugo 0.92.2">
+And like DynamicVit, this paper is also focused on token selection. So we start with the final result:
+The A-Vit, as shown in these two tables, performs better than DynamicVit!
+ Spotlight:  A-ViT requires no extra parameters or sub-network for halting improves the throughput of DeiT-Tiny by 62% and DeiT-Small by 38% with only 0."><meta name=generator content="Hugo 0.92.2">
 <link rel=stylesheet href=https://revliter-cv.github.io/css/main.css>
-<meta property="og:title" content="(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
+<meta property="og:title" content="(CVPR2022 Oral) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
 <meta property="og:description" content="First update: 2022.10.21
  This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).
-And like DynamicVit, this paper is also focused on token selection.">
+And like DynamicVit, this paper is also focused on token selection. So we start with the final result:
+The A-Vit, as shown in these two tables, performs better than DynamicVit!
+ Spotlight:  A-ViT requires no extra parameters or sub-network for halting improves the throughput of DeiT-Tiny by 62% and DeiT-Small by 38% with only 0.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://revliter-cv.github.io/articles/model-supression/a-vit/"><meta property="og:image" content="https://revliter-cv.github.io/digital-garden-logo.png"><meta property="article:section" content="articles">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://revliter-cv.github.io/digital-garden-logo.png">
-<meta name=twitter:title content="(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
+<meta name=twitter:title content="(CVPR2022 Oral) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
 <meta name=twitter:description content="First update: 2022.10.21
  This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).
-And like DynamicVit, this paper is also focused on token selection.">
-<meta itemprop=name content="(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
+And like DynamicVit, this paper is also focused on token selection. So we start with the final result:
+The A-Vit, as shown in these two tables, performs better than DynamicVit!
+ Spotlight:  A-ViT requires no extra parameters or sub-network for halting improves the throughput of DeiT-Tiny by 62% and DeiT-Small by 38% with only 0.">
+<meta itemprop=name content="(CVPR2022 Oral) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
 <meta itemprop=description content="First update: 2022.10.21
  This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).
-And like DynamicVit, this paper is also focused on token selection.">
-<meta itemprop=wordCount content="36"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+And like DynamicVit, this paper is also focused on token selection. So we start with the final result:
+The A-Vit, as shown in these two tables, performs better than DynamicVit!
+ Spotlight:  A-ViT requires no extra parameters or sub-network for halting improves the throughput of DeiT-Tiny by 62% and DeiT-Small by 38% with only 0.">
+<meta itemprop=wordCount content="1012"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
 <meta itemprop=keywords content>
-<meta itemprop=name content="(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
+<meta itemprop=name content="(CVPR2022 Oral) A-ViT:Adaptive Tokens for Efficient Vision Transformer">
 <meta itemprop=description content="First update: 2022.10.21
  This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).
-And like DynamicVit, this paper is also focused on token selection.">
-<meta itemprop=wordCount content="36"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
+And like DynamicVit, this paper is also focused on token selection. So we start with the final result:
+The A-Vit, as shown in these two tables, performs better than DynamicVit!
+ Spotlight:  A-ViT requires no extra parameters or sub-network for halting improves the throughput of DeiT-Tiny by 62% and DeiT-Small by 38% with only 0.">
+<meta itemprop=wordCount content="1012"><meta itemprop=image content="https://revliter-cv.github.io/digital-garden-logo.png">
 <meta itemprop=keywords content>
 </head><body class="flex relative h-full min-h-screen"><aside class="will-change-transform transform transition-transform -translate-x-full absolute top-0 left-0 md:relative md:translate-x-0 w-3/4 md:w-60 h-full min-h-screen p-3 bg-slate-50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700 flex flex-col gap-2.5 z-20 sidebar">
 <p class="font-bold mb-5 flex items-center gap-2">
@@ -98,12 +108,224 @@ And like DynamicVit, this paper is also focused on token selection.">
 <style>code.has-jax{font:inherit;font-size:100%;background:inherit;border:inherit;color:#515151}</style>
 <div class="overflow-y-auto h-screen max-w-full">
 <article class="left-3 px-6 py-20 max-w-full mx-10 prose lg:prose-lg h-fit dark:prose-invert prose-img:mx-auto">
-<h1 class=!mb-2>(CVPR2022) A-ViT:Adaptive Tokens for Efficient Vision Transformer</h1>
+<h1 class=!mb-2>(CVPR2022 Oral) A-ViT:Adaptive Tokens for Efficient Vision Transformer</h1>
 <blockquote>
 <p>First update: 2022.10.21</p>
 </blockquote>
 <p>This paper is published in arXiv later than the AdaVit talked before. So it just changes its name to A-Vit (My guess).</p>
-<p>And like DynamicVit, this paper is also focused on token selection.</p>
+<p>And like DynamicVit, this paper is also focused on token selection. So we start with the final result:</p>
+<p><img src=/images/MS/A-Vit1.png alt=A-Vit(1)></p>
+<p><img src=/images/MS/A-Vit2.png alt=A-Vit(2)></p>
+<p>The A-Vit, as shown in these two tables, performs better than DynamicVit!</p>
+<p><img src=/images/MS/A-Vit3.png alt="A-Vit Architectrue"></p>
+<ul>
+<li>Spotlight:
+<ul>
+<li>A-ViT requires no extra parameters or sub-network for halting</li>
+<li>improves the throughput of DeiT-Tiny by 62% and DeiT-Small by 38% with only 0.3% accuracy drop, outperforming prior art by a large margin</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>New paper to read: Alex Graves. Adaptive computation time for recurrent neural networks. arXiv preprint arXiv:1603.08983, 2016.</p>
+</blockquote>
+<ul>
+<li>Idea: pause in rnn for several timesteps (dynamic).</li>
+</ul>
+<p><img src=/images/MS/ACT.png alt=ACT></p>
+<p>About DynamicVit, the authors here argue that Gumbel-softmax-based relaxation solutions might be sub-optimal due to the difficulty of regularization, stochasticity of training, and early
+convergence of the stochastic loss, requiring multi-stage token sparsification as a heuristic guidance.</p>
+<h4 id=implementation-details>Implementation Details</h4>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#ff79c6>class</span> <span style=color:#50fa7b>Masked_Attention</span>(nn<span style=color:#ff79c6>.</span>Module):
+    <span style=color:#ff79c6>def</span> __init__(self, dim, num_heads<span style=color:#ff79c6>=</span><span style=color:#bd93f9>8</span>, qkv_bias<span style=color:#ff79c6>=</span><span style=color:#ff79c6>False</span>, attn_drop<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.</span>, proj_drop<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.</span>, mask<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>, masked_softmax_bias<span style=color:#ff79c6>=-</span><span style=color:#bd93f9>1000.</span>):
+        <span style=color:#8be9fd;font-style:italic>super</span>()<span style=color:#ff79c6>.</span>__init__()
+        self<span style=color:#ff79c6>.</span>num_heads <span style=color:#ff79c6>=</span> num_heads
+        head_dim <span style=color:#ff79c6>=</span> dim <span style=color:#ff79c6>//</span> num_heads
+        self<span style=color:#ff79c6>.</span>scale <span style=color:#ff79c6>=</span> head_dim <span style=color:#ff79c6>**</span> <span style=color:#ff79c6>-</span><span style=color:#bd93f9>0.5</span>
+
+        self<span style=color:#ff79c6>.</span>qkv <span style=color:#ff79c6>=</span> nn<span style=color:#ff79c6>.</span>Linear(dim, dim <span style=color:#ff79c6>*</span> <span style=color:#bd93f9>3</span>, bias<span style=color:#ff79c6>=</span>qkv_bias)
+        self<span style=color:#ff79c6>.</span>attn_drop <span style=color:#ff79c6>=</span> nn<span style=color:#ff79c6>.</span>Dropout(attn_drop)
+        self<span style=color:#ff79c6>.</span>proj <span style=color:#ff79c6>=</span> nn<span style=color:#ff79c6>.</span>Linear(dim, dim)
+        self<span style=color:#ff79c6>.</span>proj_drop <span style=color:#ff79c6>=</span> nn<span style=color:#ff79c6>.</span>Dropout(proj_drop)
+
+        self<span style=color:#ff79c6>.</span>mask <span style=color:#ff79c6>=</span> mask <span style=color:#6272a4># this is of shape [batch, token_number], where the token number</span>
+                         <span style=color:#6272a4># dimension is indication of token exec.</span>
+                         <span style=color:#6272a4># 0&#39;s are the tokens to continue, 1&#39;s are the tokens masked out</span>
+
+        self<span style=color:#ff79c6>.</span>masked_softmax_bias <span style=color:#ff79c6>=</span> masked_softmax_bias
+
+    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>forward</span>(self, x, mask<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>):
+        B, N, C <span style=color:#ff79c6>=</span> x<span style=color:#ff79c6>.</span>shape
+        qkv <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>qkv(x)<span style=color:#ff79c6>.</span>reshape(B, N, <span style=color:#bd93f9>3</span>, self<span style=color:#ff79c6>.</span>num_heads, C <span style=color:#ff79c6>//</span> self<span style=color:#ff79c6>.</span>num_heads)<span style=color:#ff79c6>.</span>permute(<span style=color:#bd93f9>2</span>, <span style=color:#bd93f9>0</span>, <span style=color:#bd93f9>3</span>, <span style=color:#bd93f9>1</span>, <span style=color:#bd93f9>4</span>)
+        q, k, v <span style=color:#ff79c6>=</span> qkv[<span style=color:#bd93f9>0</span>], qkv[<span style=color:#bd93f9>1</span>], qkv[<span style=color:#bd93f9>2</span>]   <span style=color:#6272a4># make torchscript happy (cannot use tensor as tuple)</span>
+        attn <span style=color:#ff79c6>=</span> (q <span style=color:#ff79c6>@</span> k<span style=color:#ff79c6>.</span>transpose(<span style=color:#ff79c6>-</span><span style=color:#bd93f9>2</span>, <span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>)) <span style=color:#ff79c6>*</span> self<span style=color:#ff79c6>.</span>scale
+
+        <span style=color:#ff79c6>if</span> mask <span style=color:#ff79c6>is</span> <span style=color:#ff79c6>not</span> <span style=color:#ff79c6>None</span>:
+            <span style=color:#6272a4># now we need to mask out all the attentions associated with this token</span>
+            attn <span style=color:#ff79c6>=</span> attn <span style=color:#ff79c6>+</span> mask<span style=color:#ff79c6>.</span>view(mask<span style=color:#ff79c6>.</span>shape[<span style=color:#bd93f9>0</span>], <span style=color:#bd93f9>1</span>, <span style=color:#bd93f9>1</span>, mask<span style=color:#ff79c6>.</span>shape[<span style=color:#bd93f9>1</span>]) <span style=color:#ff79c6>*</span> self<span style=color:#ff79c6>.</span>masked_softmax_bias
+            <span style=color:#6272a4># this additional bias will make attention associated with this token to be zeroed out</span>
+            <span style=color:#6272a4># this incurs at each head, making sure all embedding sections of other tokens</span>
+                <span style=color:#6272a4># ignore these tokens</span>
+
+        attn <span style=color:#ff79c6>=</span> attn<span style=color:#ff79c6>.</span>softmax(dim<span style=color:#ff79c6>=-</span><span style=color:#bd93f9>1</span>)
+        attn <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>attn_drop(attn)
+
+        x <span style=color:#ff79c6>=</span> (attn <span style=color:#ff79c6>@</span> v)<span style=color:#ff79c6>.</span>transpose(<span style=color:#bd93f9>1</span>, <span style=color:#bd93f9>2</span>)<span style=color:#ff79c6>.</span>reshape(B, N, C)
+        x <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>proj(x)
+        x <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>proj_drop(x)
+
+        <span style=color:#ff79c6>return</span> x
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#ff79c6>class</span> <span style=color:#50fa7b>Block_ACT</span>(nn<span style=color:#ff79c6>.</span>Module):
+
+    <span style=color:#ff79c6>def</span> __init__(self, dim, num_heads, mlp_ratio<span style=color:#ff79c6>=</span><span style=color:#bd93f9>4.</span>, qkv_bias<span style=color:#ff79c6>=</span><span style=color:#ff79c6>False</span>, drop<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.</span>, attn_drop<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.</span>,
+                 drop_path<span style=color:#ff79c6>=</span><span style=color:#bd93f9>0.</span>, act_layer<span style=color:#ff79c6>=</span>nn<span style=color:#ff79c6>.</span>GELU, norm_layer<span style=color:#ff79c6>=</span>nn<span style=color:#ff79c6>.</span>LayerNorm, args<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>, index<span style=color:#ff79c6>=-</span><span style=color:#bd93f9>1</span>, num_patches<span style=color:#ff79c6>=</span><span style=color:#bd93f9>197</span>):
+        <span style=color:#8be9fd;font-style:italic>super</span>()<span style=color:#ff79c6>.</span>__init__()
+        self<span style=color:#ff79c6>.</span>norm1 <span style=color:#ff79c6>=</span> norm_layer(dim)
+        self<span style=color:#ff79c6>.</span>attn <span style=color:#ff79c6>=</span> Masked_Attention(dim, num_heads<span style=color:#ff79c6>=</span>num_heads, qkv_bias<span style=color:#ff79c6>=</span>qkv_bias, attn_drop<span style=color:#ff79c6>=</span>attn_drop, proj_drop<span style=color:#ff79c6>=</span>drop)
+
+        <span style=color:#6272a4># NOTE: drop path for stochastic depth, we shall see if this is better than dropout here</span>
+        self<span style=color:#ff79c6>.</span>drop_path <span style=color:#ff79c6>=</span> DropPath(drop_path) <span style=color:#ff79c6>if</span> drop_path <span style=color:#ff79c6>&gt;</span> <span style=color:#bd93f9>0.</span> <span style=color:#ff79c6>else</span> nn<span style=color:#ff79c6>.</span>Identity()
+        self<span style=color:#ff79c6>.</span>norm2 <span style=color:#ff79c6>=</span> norm_layer(dim)
+        mlp_hidden_dim <span style=color:#ff79c6>=</span> <span style=color:#8be9fd;font-style:italic>int</span>(dim <span style=color:#ff79c6>*</span> mlp_ratio)
+        self<span style=color:#ff79c6>.</span>mlp <span style=color:#ff79c6>=</span> Mlp(in_features<span style=color:#ff79c6>=</span>dim, hidden_features<span style=color:#ff79c6>=</span>mlp_hidden_dim, act_layer<span style=color:#ff79c6>=</span>act_layer, drop<span style=color:#ff79c6>=</span>drop)
+
+        self<span style=color:#ff79c6>.</span>act_mode <span style=color:#ff79c6>=</span> args<span style=color:#ff79c6>.</span>act_mode
+        <span style=color:#ff79c6>assert</span> self<span style=color:#ff79c6>.</span>act_mode <span style=color:#ff79c6>in</span> {<span style=color:#bd93f9>1</span>, <span style=color:#bd93f9>2</span>, <span style=color:#bd93f9>3</span>, <span style=color:#bd93f9>4</span>} <span style=color:#6272a4>#now only support 1-extra mlp, or b-position 0 encoding</span>
+
+        self<span style=color:#ff79c6>.</span>index<span style=color:#ff79c6>=</span>index
+        self<span style=color:#ff79c6>.</span>args <span style=color:#ff79c6>=</span> args
+
+        <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>act_mode <span style=color:#ff79c6>==</span> <span style=color:#bd93f9>4</span>:
+            <span style=color:#6272a4># Apply sigmoid on the mean of all tokens to determine whether to continue</span>
+            self<span style=color:#ff79c6>.</span>sig <span style=color:#ff79c6>=</span> torch<span style=color:#ff79c6>.</span>sigmoid
+        <span style=color:#ff79c6>else</span>:
+            <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#39;Not supported yet.&#39;</span>)
+            exit()
+
+    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>forward</span>(self, x):
+
+        x <span style=color:#ff79c6>=</span> x <span style=color:#ff79c6>+</span> self<span style=color:#ff79c6>.</span>drop_path(self<span style=color:#ff79c6>.</span>attn(self<span style=color:#ff79c6>.</span>norm1(x)))
+        x <span style=color:#ff79c6>=</span> x <span style=color:#ff79c6>+</span> self<span style=color:#ff79c6>.</span>drop_path(self<span style=color:#ff79c6>.</span>mlp(self<span style=color:#ff79c6>.</span>norm2(x)))
+
+        <span style=color:#ff79c6>return</span> x
+
+
+    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>forward_act</span>(self, x, mask<span style=color:#ff79c6>=</span><span style=color:#ff79c6>None</span>):
+
+        debug<span style=color:#ff79c6>=</span><span style=color:#ff79c6>False</span>
+        analyze_delta <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>True</span>
+        bs, token, dim <span style=color:#ff79c6>=</span> x<span style=color:#ff79c6>.</span>shape
+
+        <span style=color:#ff79c6>if</span> mask <span style=color:#ff79c6>is</span> <span style=color:#ff79c6>None</span>:
+            x <span style=color:#ff79c6>=</span> x <span style=color:#ff79c6>+</span> self<span style=color:#ff79c6>.</span>drop_path(self<span style=color:#ff79c6>.</span>attn(self<span style=color:#ff79c6>.</span>norm1(x)))
+            x <span style=color:#ff79c6>=</span> x <span style=color:#ff79c6>+</span> self<span style=color:#ff79c6>.</span>drop_path(self<span style=color:#ff79c6>.</span>mlp(self<span style=color:#ff79c6>.</span>norm2(x)))
+        <span style=color:#ff79c6>else</span>:
+            x <span style=color:#ff79c6>=</span> x <span style=color:#ff79c6>+</span> self<span style=color:#ff79c6>.</span>drop_path(self<span style=color:#ff79c6>.</span>attn(self<span style=color:#ff79c6>.</span>norm1(x<span style=color:#ff79c6>*</span>(<span style=color:#bd93f9>1</span><span style=color:#ff79c6>-</span>mask)<span style=color:#ff79c6>.</span>view(bs, token, <span style=color:#bd93f9>1</span>))<span style=color:#ff79c6>*</span>(<span style=color:#bd93f9>1</span><span style=color:#ff79c6>-</span>mask)<span style=color:#ff79c6>.</span>view(bs, token, <span style=color:#bd93f9>1</span>), mask<span style=color:#ff79c6>=</span>mask))
+            x <span style=color:#ff79c6>=</span> x <span style=color:#ff79c6>+</span> self<span style=color:#ff79c6>.</span>drop_path(self<span style=color:#ff79c6>.</span>mlp(self<span style=color:#ff79c6>.</span>norm2(x<span style=color:#ff79c6>*</span>(<span style=color:#bd93f9>1</span><span style=color:#ff79c6>-</span>mask)<span style=color:#ff79c6>.</span>view(bs, token, <span style=color:#bd93f9>1</span>))<span style=color:#ff79c6>*</span>(<span style=color:#bd93f9>1</span><span style=color:#ff79c6>-</span>mask)<span style=color:#ff79c6>.</span>view(bs, token, <span style=color:#bd93f9>1</span>)))
+
+        <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>act_mode<span style=color:#ff79c6>==</span><span style=color:#bd93f9>4</span>:
+            gate_scale, gate_center <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>args<span style=color:#ff79c6>.</span>gate_scale, self<span style=color:#ff79c6>.</span>args<span style=color:#ff79c6>.</span>gate_center
+            halting_score_token <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>sig(x[:,:,<span style=color:#bd93f9>0</span>] <span style=color:#ff79c6>*</span> gate_scale <span style=color:#ff79c6>-</span> gate_center)
+            <span style=color:#6272a4># initially first position used for layer halting, second for token</span>
+            <span style=color:#6272a4># now discarding position 1</span>
+            halting_score <span style=color:#ff79c6>=</span> [<span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>, halting_score_token]
+        <span style=color:#ff79c6>else</span>:
+            <span style=color:#8be9fd;font-style:italic>print</span>(<span style=color:#f1fa8c>&#39;Not supported yet.&#39;</span>)
+            exit()
+
+        <span style=color:#ff79c6>return</span> x, halting_score
+</code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#282a36;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#6272a4># In Class VisionTransformer:</span>
+    <span style=color:#ff79c6>def</span> <span style=color:#50fa7b>forward_features_act_token</span>(self, x):
+        x <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>patch_embed(x)
+        cls_token <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>cls_token<span style=color:#ff79c6>.</span>expand(x<span style=color:#ff79c6>.</span>shape[<span style=color:#bd93f9>0</span>], <span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>, <span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>)  <span style=color:#6272a4># stole cls_tokens impl from Phil Wang, thanks</span>
+        <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>dist_token <span style=color:#ff79c6>is</span> <span style=color:#ff79c6>None</span>:
+            x <span style=color:#ff79c6>=</span> torch<span style=color:#ff79c6>.</span>cat((cls_token, x), dim<span style=color:#ff79c6>=</span><span style=color:#bd93f9>1</span>)
+        <span style=color:#ff79c6>else</span>:
+            x <span style=color:#ff79c6>=</span> torch<span style=color:#ff79c6>.</span>cat((cls_token, self<span style=color:#ff79c6>.</span>dist_token<span style=color:#ff79c6>.</span>expand(x<span style=color:#ff79c6>.</span>shape[<span style=color:#bd93f9>0</span>], <span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>, <span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>), x), dim<span style=color:#ff79c6>=</span><span style=color:#bd93f9>1</span>)
+        x <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>pos_drop(x <span style=color:#ff79c6>+</span> self<span style=color:#ff79c6>.</span>pos_embed)
+
+        <span style=color:#6272a4># now start the act part</span>
+        bs <span style=color:#ff79c6>=</span> x<span style=color:#ff79c6>.</span>size()[<span style=color:#bd93f9>0</span>]  <span style=color:#6272a4># The batch size</span>
+
+        <span style=color:#6272a4># this part needs to be modified for higher GPU utilization</span>
+        <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>c_token <span style=color:#ff79c6>is</span> <span style=color:#ff79c6>None</span> <span style=color:#ff79c6>or</span> bs <span style=color:#ff79c6>!=</span> self<span style=color:#ff79c6>.</span>c_token<span style=color:#ff79c6>.</span>size()[<span style=color:#bd93f9>0</span>]:
+            self<span style=color:#ff79c6>.</span>c_token <span style=color:#ff79c6>=</span> Variable(torch<span style=color:#ff79c6>.</span>zeros(bs, self<span style=color:#ff79c6>.</span>total_token_cnt)<span style=color:#ff79c6>.</span>cuda())
+            self<span style=color:#ff79c6>.</span>R_token <span style=color:#ff79c6>=</span> Variable(torch<span style=color:#ff79c6>.</span>ones(bs, self<span style=color:#ff79c6>.</span>total_token_cnt)<span style=color:#ff79c6>.</span>cuda())
+            self<span style=color:#ff79c6>.</span>mask_token <span style=color:#ff79c6>=</span> Variable(torch<span style=color:#ff79c6>.</span>ones(bs, self<span style=color:#ff79c6>.</span>total_token_cnt)<span style=color:#ff79c6>.</span>cuda())
+            self<span style=color:#ff79c6>.</span>rho_token <span style=color:#ff79c6>=</span> Variable(torch<span style=color:#ff79c6>.</span>zeros(bs, self<span style=color:#ff79c6>.</span>total_token_cnt)<span style=color:#ff79c6>.</span>cuda())
+            self<span style=color:#ff79c6>.</span>counter_token <span style=color:#ff79c6>=</span> Variable(torch<span style=color:#ff79c6>.</span>ones(bs, self<span style=color:#ff79c6>.</span>total_token_cnt)<span style=color:#ff79c6>.</span>cuda())
+
+        c_token <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>c_token<span style=color:#ff79c6>.</span>clone()
+        R_token <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>R_token<span style=color:#ff79c6>.</span>clone()
+        mask_token <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>mask_token<span style=color:#ff79c6>.</span>clone()
+        self<span style=color:#ff79c6>.</span>rho_token <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>rho_token<span style=color:#ff79c6>.</span>detach() <span style=color:#ff79c6>*</span> <span style=color:#bd93f9>0.</span>
+        self<span style=color:#ff79c6>.</span>counter_token <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>counter_token<span style=color:#ff79c6>.</span>detach() <span style=color:#ff79c6>*</span> <span style=color:#bd93f9>0</span> <span style=color:#ff79c6>+</span> <span style=color:#bd93f9>1.</span>
+        <span style=color:#6272a4># Will contain the output of this residual layer (weighted sum of outputs of the residual blocks)</span>
+        output <span style=color:#ff79c6>=</span> <span style=color:#ff79c6>None</span>
+        <span style=color:#6272a4># Use out to backbone</span>
+        out <span style=color:#ff79c6>=</span> x
+
+        <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>args<span style=color:#ff79c6>.</span>distr_prior_alpha<span style=color:#ff79c6>&gt;</span><span style=color:#bd93f9>0.</span>:
+            self<span style=color:#ff79c6>.</span>halting_score_layer <span style=color:#ff79c6>=</span> []
+
+        <span style=color:#ff79c6>for</span> i, l <span style=color:#ff79c6>in</span> <span style=color:#8be9fd;font-style:italic>enumerate</span>(self<span style=color:#ff79c6>.</span>blocks):
+
+            <span style=color:#6272a4># block out all the parts that are not used</span>
+            out<span style=color:#ff79c6>.</span>data <span style=color:#ff79c6>=</span> out<span style=color:#ff79c6>.</span>data <span style=color:#ff79c6>*</span> mask_token<span style=color:#ff79c6>.</span>float()<span style=color:#ff79c6>.</span>view(bs, self<span style=color:#ff79c6>.</span>total_token_cnt, <span style=color:#bd93f9>1</span>)
+
+            <span style=color:#6272a4># evaluate layer and get halting probability for each sample</span>
+            <span style=color:#6272a4># block_output, h_lst = l.forward_act(out)    # h is a vector of length bs, block_output a 3D tensor</span>
+            block_output, h_lst <span style=color:#ff79c6>=</span> l<span style=color:#ff79c6>.</span>forward_act(out, <span style=color:#bd93f9>1.</span><span style=color:#ff79c6>-</span>mask_token<span style=color:#ff79c6>.</span>float())    <span style=color:#6272a4># h is a vector of length bs, block_output a 3D tensor</span>
+
+            <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>args<span style=color:#ff79c6>.</span>distr_prior_alpha<span style=color:#ff79c6>&gt;</span><span style=color:#bd93f9>0.</span>:
+                self<span style=color:#ff79c6>.</span>halting_score_layer<span style=color:#ff79c6>.</span>append(torch<span style=color:#ff79c6>.</span>mean(h_lst[<span style=color:#bd93f9>1</span>][<span style=color:#bd93f9>1</span>:]))
+
+            out <span style=color:#ff79c6>=</span> block_output<span style=color:#ff79c6>.</span>clone()              <span style=color:#6272a4># Deep copy needed for the next layer</span>
+
+            _, h_token <span style=color:#ff79c6>=</span> h_lst <span style=color:#6272a4># h is layer_halting score, h_token is token halting score, first position discarded</span>
+
+            <span style=color:#6272a4># here, 1 is remaining, 0 is blocked</span>
+            block_output <span style=color:#ff79c6>=</span> block_output <span style=color:#ff79c6>*</span> mask_token<span style=color:#ff79c6>.</span>float()<span style=color:#ff79c6>.</span>view(bs, self<span style=color:#ff79c6>.</span>total_token_cnt, <span style=color:#bd93f9>1</span>)
+
+            <span style=color:#6272a4># Is this the last layer in the block?</span>
+            <span style=color:#ff79c6>if</span> i<span style=color:#ff79c6>==</span><span style=color:#8be9fd;font-style:italic>len</span>(self<span style=color:#ff79c6>.</span>blocks)<span style=color:#ff79c6>-</span><span style=color:#bd93f9>1</span>:
+                h_token <span style=color:#ff79c6>=</span> Variable(torch<span style=color:#ff79c6>.</span>ones(bs, self<span style=color:#ff79c6>.</span>total_token_cnt)<span style=color:#ff79c6>.</span>cuda())
+
+            <span style=color:#6272a4># for token part</span>
+            c_token <span style=color:#ff79c6>=</span> c_token <span style=color:#ff79c6>+</span> h_token
+            self<span style=color:#ff79c6>.</span>rho_token <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>rho_token <span style=color:#ff79c6>+</span> mask_token<span style=color:#ff79c6>.</span>float()
+
+            <span style=color:#6272a4># Case 1: threshold reached in this iteration</span>
+            <span style=color:#6272a4># token part</span>
+            reached_token <span style=color:#ff79c6>=</span> c_token <span style=color:#ff79c6>&gt;</span> <span style=color:#bd93f9>1</span> <span style=color:#ff79c6>-</span> self<span style=color:#ff79c6>.</span>eps
+            reached_token <span style=color:#ff79c6>=</span> reached_token<span style=color:#ff79c6>.</span>float() <span style=color:#ff79c6>*</span> mask_token<span style=color:#ff79c6>.</span>float()
+            delta1 <span style=color:#ff79c6>=</span> block_output <span style=color:#ff79c6>*</span> R_token<span style=color:#ff79c6>.</span>view(bs, self<span style=color:#ff79c6>.</span>total_token_cnt, <span style=color:#bd93f9>1</span>) <span style=color:#ff79c6>*</span> reached_token<span style=color:#ff79c6>.</span>view(bs, self<span style=color:#ff79c6>.</span>total_token_cnt, <span style=color:#bd93f9>1</span>)
+            self<span style=color:#ff79c6>.</span>rho_token <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>rho_token <span style=color:#ff79c6>+</span> R_token <span style=color:#ff79c6>*</span> reached_token
+
+            <span style=color:#6272a4># Case 2: threshold not reached</span>
+            <span style=color:#6272a4># token part</span>
+            not_reached_token <span style=color:#ff79c6>=</span> c_token <span style=color:#ff79c6>&lt;</span> <span style=color:#bd93f9>1</span> <span style=color:#ff79c6>-</span> self<span style=color:#ff79c6>.</span>eps
+            not_reached_token <span style=color:#ff79c6>=</span> not_reached_token<span style=color:#ff79c6>.</span>float()
+            R_token <span style=color:#ff79c6>=</span> R_token <span style=color:#ff79c6>-</span> (not_reached_token<span style=color:#ff79c6>.</span>float() <span style=color:#ff79c6>*</span> h_token)
+            delta2 <span style=color:#ff79c6>=</span> block_output <span style=color:#ff79c6>*</span> h_token<span style=color:#ff79c6>.</span>view(bs, self<span style=color:#ff79c6>.</span>total_token_cnt, <span style=color:#bd93f9>1</span>) <span style=color:#ff79c6>*</span> not_reached_token<span style=color:#ff79c6>.</span>view(bs, self<span style=color:#ff79c6>.</span>total_token_cnt, <span style=color:#bd93f9>1</span>)
+
+            self<span style=color:#ff79c6>.</span>counter_token <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>counter_token <span style=color:#ff79c6>+</span> not_reached_token <span style=color:#6272a4># These data points will need at least one more layer</span>
+
+            <span style=color:#6272a4># Update the mask</span>
+            mask_token <span style=color:#ff79c6>=</span> c_token <span style=color:#ff79c6>&lt;</span> <span style=color:#bd93f9>1</span> <span style=color:#ff79c6>-</span> self<span style=color:#ff79c6>.</span>eps
+
+            <span style=color:#ff79c6>if</span> output <span style=color:#ff79c6>is</span> <span style=color:#ff79c6>None</span>:
+                output <span style=color:#ff79c6>=</span> delta1 <span style=color:#ff79c6>+</span> delta2
+            <span style=color:#ff79c6>else</span>:
+                output <span style=color:#ff79c6>=</span> output <span style=color:#ff79c6>+</span> (delta1 <span style=color:#ff79c6>+</span> delta2)
+
+        x <span style=color:#ff79c6>=</span> self<span style=color:#ff79c6>.</span>norm(output)
+
+        <span style=color:#ff79c6>if</span> self<span style=color:#ff79c6>.</span>dist_token <span style=color:#ff79c6>is</span> <span style=color:#ff79c6>None</span>:
+            <span style=color:#ff79c6>return</span> self<span style=color:#ff79c6>.</span>pre_logits(x[:, <span style=color:#bd93f9>0</span>])
+        <span style=color:#ff79c6>else</span>:
+            <span style=color:#ff79c6>return</span> x[:, <span style=color:#bd93f9>0</span>], x[:, <span style=color:#bd93f9>1</span>]
+</code></pre></div>
 </article>
 </div>
 </div>
